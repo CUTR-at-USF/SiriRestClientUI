@@ -48,7 +48,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SearchView.OnQueryTextListener;
+import com.actionbarsherlock.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
