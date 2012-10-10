@@ -14,8 +14,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
-import edu.usf.cutr.siri.android.client.SiriRestClient;
-import edu.usf.cutr.siri.android.client.SiriRestClientConfig;
+import edu.usf.cutr.siri.android.client.config.SiriRestClientConfig;
 
 public class Preferences extends SherlockPreferenceActivity implements
 		OnSharedPreferenceChangeListener {

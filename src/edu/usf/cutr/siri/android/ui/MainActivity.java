@@ -16,6 +16,13 @@
 
 package edu.usf.cutr.siri.android.ui;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+
 /**
  * ActionBarSherlock imports for ActionBar support on pre-3.0 devices
  */
@@ -26,20 +33,13 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 
-import edu.usf.cutr.siri.android.ui.StopMonResponseLoader.AppListFragment;
 import edu.usf.cutr.siri.android.ui.fragments.StopMonRequestFragment;
 import edu.usf.cutr.siri.android.ui.fragments.VehicleMonRequestFragment;
-
-import android.content.Intent;
-import android.os.Bundle;
-
 /**
  * Android support library imports for Fragment support on pre-3.0 devices
  */
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import edu.usf.cutr.siri.android.ui.loaders.StopMonResponseLoader;
+import edu.usf.cutr.siri.android.ui.loaders.VehicleMonResponseLoader;
 
 /**
  * This is a reference implementation for using the RESTful SIRI API from an

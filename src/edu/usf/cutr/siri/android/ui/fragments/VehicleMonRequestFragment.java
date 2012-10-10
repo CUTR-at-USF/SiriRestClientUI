@@ -27,7 +27,7 @@ import android.widget.EditText;
 import edu.usf.cutr.siri.android.client.SiriRestClient;
 import edu.usf.cutr.siri.android.ui.MainActivity;
 import edu.usf.cutr.siri.android.ui.R;
-import edu.usf.cutr.siri.android.util.SiriUtils;
+import edu.usf.cutr.siri.android.util.SiriUtilsUI;
 
 /**
  * The UI for the input fields for the SIRI Vehicle Monitoring Request, which
@@ -98,7 +98,7 @@ public class VehicleMonRequestFragment extends BaseRequestFragment {
 		// key.setText(savedInstanceState.getString(keyVehKey));
 		// }else{
 		// // Try to get the developer key from a resource file, if it exists
-		// String strKey = SiriUtils.getKeyFromResource(getActivity());
+		// String strKey = SiriUtilsUI.getKeyFromResource(getActivity());
 		// key.setText(strKey);
 		// }
 		//
@@ -120,7 +120,7 @@ public class VehicleMonRequestFragment extends BaseRequestFragment {
 		// }else{
 		// Log.d(MainActivity.TAG, "VehicleMon savedInstanceState is null");
 		// Try to get the developer key from a resource file, if it exists
-		String strKey = SiriUtils.getKeyFromResource(getActivity());
+		String strKey = SiriUtilsUI.getKeyFromResource(getActivity());
 		key.setText(strKey);
 		// }
 

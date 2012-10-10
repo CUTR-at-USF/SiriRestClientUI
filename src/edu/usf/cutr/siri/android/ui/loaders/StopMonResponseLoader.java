@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package edu.usf.cutr.siri.android.ui;
+package edu.usf.cutr.siri.android.ui.loaders;
 
 import java.io.File;
 import java.text.Collator;
@@ -48,12 +48,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import com.actionbarsherlock.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.widget.SearchView.OnQueryTextListener;
 
-import edu.usf.cutr.siri.android.ui.VehicleMonResponseLoader.AppEntry;
+import edu.usf.cutr.siri.android.ui.R;
 
 /**
  * Demonstration of the implementation of a custom Loader.

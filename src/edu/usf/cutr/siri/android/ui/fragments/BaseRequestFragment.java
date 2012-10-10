@@ -16,7 +16,6 @@
 
 package edu.usf.cutr.siri.android.ui.fragments;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -25,13 +24,10 @@ import uk.org.siri.siri.Siri;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.DialogInterface.OnCancelListener;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.RingtoneManager;
 import android.media.ToneGenerator;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -41,10 +37,10 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragment;
 
 import edu.usf.cutr.siri.android.client.SiriRestClient;
-import edu.usf.cutr.siri.android.client.SiriRestClientConfig;
+import edu.usf.cutr.siri.android.client.config.SiriRestClientConfig;
 import edu.usf.cutr.siri.android.ui.MainActivity;
 import edu.usf.cutr.siri.android.ui.Preferences;
-import edu.usf.cutr.siri.android.util.SiriUtils;
+import edu.usf.cutr.siri.android.util.SiriUtilsUI;
 
 /**
  * This class defines the basic implementation that's shared by both the
@@ -176,7 +172,7 @@ public abstract class BaseRequestFragment extends SherlockFragment {
 				elapsedTimes.add(elapsedTimeMilliSeconds);
 
 				if (s != null) {
-					SiriUtils.printContents(s);
+					SiriUtilsUI.printContents(s);
 				}
 
 				// If we're running more than one test, show an update in the

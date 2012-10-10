@@ -16,40 +16,20 @@
 
 package edu.usf.cutr.siri.android.ui.fragments;
 
-/**
- * Spring imports
- */
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 import uk.org.siri.siri.Siri;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.content.DialogInterface.OnCancelListener;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.actionbarsherlock.app.SherlockFragment;
 
 import edu.usf.cutr.siri.android.client.SiriRestClient;
-import edu.usf.cutr.siri.android.client.SiriRestClientConfig;
 import edu.usf.cutr.siri.android.ui.MainActivity;
-import edu.usf.cutr.siri.android.ui.Preferences;
 import edu.usf.cutr.siri.android.ui.R;
-import edu.usf.cutr.siri.android.ui.R.id;
-import edu.usf.cutr.siri.android.ui.R.layout;
-import edu.usf.cutr.siri.android.util.SiriUtils;
+import edu.usf.cutr.siri.android.util.SiriUtilsUI;
 
 /**
  * The UI for the input fields for the SIRI Stop Monitoring Request, which
@@ -78,7 +58,7 @@ public class StopMonRequestFragment extends BaseRequestFragment {
 				false);
 
 		// Try to get the developer key from a resource file, if it exists
-		String strKey = SiriUtils.getKeyFromResource(getActivity());
+		String strKey = SiriUtilsUI.getKeyFromResource(getActivity());
 
 		key = (EditText) v.findViewById(R.id.key);
 		key.setText(strKey);
