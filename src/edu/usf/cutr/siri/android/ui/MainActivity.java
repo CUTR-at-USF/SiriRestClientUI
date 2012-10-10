@@ -18,6 +18,9 @@ package edu.usf.cutr.siri.android.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+/**
+ * Android support library imports for Fragment support on pre-3.0 devices
+ */
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -35,9 +38,6 @@ import com.actionbarsherlock.view.Window;
 
 import edu.usf.cutr.siri.android.ui.fragments.StopMonRequestFragment;
 import edu.usf.cutr.siri.android.ui.fragments.VehicleMonRequestFragment;
-/**
- * Android support library imports for Fragment support on pre-3.0 devices
- */
 import edu.usf.cutr.siri.android.ui.loaders.StopMonResponseLoader;
 import edu.usf.cutr.siri.android.ui.loaders.VehicleMonResponseLoader;
 
