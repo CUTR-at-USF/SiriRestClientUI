@@ -60,12 +60,17 @@
         </dependency>    
 	</dependencies>
   
-    <!-- CUTR SiriRestClient SNAPSHOTs -->
+    <!-- CUTR SiriRestClient/onebusaway-siri-api-v13-pojos SNAPSHOTs/RELEASES -->
     <repositories>
         <repository>
             <id>cutr-snapshots</id>
             <url>https://github.com/CUTR-at-USF/cutr-mvn-repo/raw/master/snapshots</url>
-          </repository>
+        </repository>
+          
+        <repository>
+            <id>cutr-releases</id>
+            <url>https://github.com/CUTR-at-USF/cutr-mvn-repo/raw/master/releases</url>
+        </repository>  
     </repositories>
     
     <!-- Maven build -->
