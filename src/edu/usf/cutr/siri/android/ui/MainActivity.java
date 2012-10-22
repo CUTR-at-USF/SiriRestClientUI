@@ -25,7 +25,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-
 /**
  * ActionBarSherlock imports for ActionBar support on pre-3.0 devices
  */
@@ -36,6 +35,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 
+import edu.usf.cutr.siri.android.client.config.SiriJacksonConfig;
 import edu.usf.cutr.siri.android.ui.fragments.StopMonRequestFragment;
 import edu.usf.cutr.siri.android.ui.fragments.VehicleMonRequestFragment;
 import edu.usf.cutr.siri.android.ui.loaders.StopMonResponseLoader;
@@ -73,6 +73,16 @@ public class MainActivity extends SherlockFragmentActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		setTheme(com.actionbarsherlock.R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
+		
+		/**
+		 * Tell Jackson to retrieve any cached objects now, in an attempt to hide
+		 * the initialization latency from the user.  Caching allows the re-use
+		 * of Jackson ObjectMapper, ObjectReader, and XmlReader objects
+		 * from previous VM executions to reduce cold-start times.
+		 */
+		SiriJacksonConfig.setUsingCache(true, getApplicationContext());
+		SiriJacksonConfig.forceCacheRead();
+		
 		// Request use of spinner for showing indeterminate progress, to show
 		// the user somethings going on during long-running operations
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
