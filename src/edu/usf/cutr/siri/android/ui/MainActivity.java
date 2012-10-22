@@ -52,7 +52,7 @@ import edu.usf.cutr.siri.android.ui.loaders.VehicleMonResponseLoader;
 public class MainActivity extends SherlockFragmentActivity implements
 		ActionBar.TabListener {
 
-	public static String TAG = "SiriRestClient";
+	public static String TAG = "SiriRestClientUI";
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
