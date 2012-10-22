@@ -17,7 +17,9 @@
 package edu.usf.cutr.siri.android.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 /**
  * Android support library imports for Fragment support on pre-3.0 devices
  */
@@ -25,6 +27,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 /**
  * ActionBarSherlock imports for ActionBar support on pre-3.0 devices
  */
@@ -73,21 +76,36 @@ public class MainActivity extends SherlockFragmentActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		setTheme(com.actionbarsherlock.R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
-		
-		/**
-		 * Tell Jackson to retrieve any cached objects now, in an attempt to hide
-		 * the initialization latency from the user.  Caching allows the re-use
-		 * of Jackson ObjectMapper, ObjectReader, and XmlReader objects
-		 * from previous VM executions to reduce cold-start times.
-		 */
-		SiriJacksonConfig.setUsingCache(true, getApplicationContext());
-		SiriJacksonConfig.forceCacheRead();
-		
+
+		// Set the default values from the XML file if this is the first
+		// execution of the app
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+		// Get whether or not to cache Jackson objects
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		boolean cacheJacksonObjects = sharedPref.getBoolean(
+				Preferences.KEY_CACHE_JACKSON_OBJECTS, true);
+
+		if (cacheJacksonObjects) {
+			Log.d(TAG,
+					"Preference is set to cache Jackson objects, forcing a cache read now in " +
+					"MainActivity.onCreate() to hide latency from user...");
+			/**
+			 * Tell Jackson to retrieve any cached objects now, in an attempt to
+			 * hide the initialization latency from the user. Caching allows the
+			 * re-use of Jackson ObjectMapper, ObjectReader, and XmlReader
+			 * objects from previous VM executions to reduce cold-start times.
+			 */
+			SiriJacksonConfig.setUsingCache(true, getApplicationContext());
+			SiriJacksonConfig.forceCacheRead();
+		}
+
 		// Request use of spinner for showing indeterminate progress, to show
 		// the user somethings going on during long-running operations
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_main);
-		
+
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
@@ -125,7 +143,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 					.setTabListener(this));
 		}
 
-		//Hide the indeterminate progress bar on the activity until we need it
+		// Hide the indeterminate progress bar on the activity until we need it
 		setProgressBarIndeterminateVisibility(Boolean.FALSE);
 	}
 
@@ -149,7 +167,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);

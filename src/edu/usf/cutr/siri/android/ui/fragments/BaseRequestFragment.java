@@ -70,7 +70,7 @@ public abstract class BaseRequestFragment extends SherlockFragment {
 	int jacksonObjectType;
 	int numRequests;
 	double timeBetweenRequests;
-	boolean beepOnTestComplete;
+	boolean beepOnTestComplete;	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -116,7 +116,10 @@ public abstract class BaseRequestFragment extends SherlockFragment {
 				.getString(Preferences.KEY_TIME_BETWEEN_REQUESTS, "0"));
 		//Get whether or not to beep when tests are complete
 		beepOnTestComplete = sharedPref
-				.getBoolean(Preferences.KEY_BEEP_ON_TEST_COMPLETE, false);
+				.getBoolean(Preferences.KEY_BEEP_ON_TEST_COMPLETE, false);	
+		//NOTE: We already indicated in MainActivity.onCreate() whether or
+		//      not we want to cache Jackson objects, so don't worry about
+		//      that preference here
 	}
 
 	// ***************************************

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
+import edu.usf.cutr.siri.android.client.config.SiriJacksonConfig;
 import edu.usf.cutr.siri.android.client.config.SiriRestClientConfig;
 
 public class Preferences extends SherlockPreferenceActivity implements
@@ -30,14 +31,17 @@ public class Preferences extends SherlockPreferenceActivity implements
 
 	public static final String KEY_JACKSON_OBJECT_TYPE = "pref_key_jackson_object";
 
+	public static final String KEY_CACHE_JACKSON_OBJECTS = "pref_key_cache_jackson_objects";
+
 	public static final String KEY_NUM_REQUESTS = "pref_key_num_requests";
 
 	public static final String KEY_TIME_BETWEEN_REQUESTS = "pref_key_time_between_requests";
-	
+
 	public static final String KEY_BEEP_ON_TEST_COMPLETE = "pref_key_beep_on_test_complete";
 
 	ListPreference listResponseTypes;
 	ListPreference listJacksonJsonObjectTypes;
+	CheckBoxPreference chkbxCacheJacksonObjects;
 	ListPreference listHttpConnectionType;
 	EditTextPreference txtNumRequests;
 	EditTextPreference txtTimeBetweenRequests;
@@ -58,6 +62,7 @@ public class Preferences extends SherlockPreferenceActivity implements
 
 		listResponseTypes = (ListPreference) findPreference(KEY_RESPONSE_TYPE);
 		listJacksonJsonObjectTypes = (ListPreference) findPreference(KEY_JACKSON_OBJECT_TYPE);
+		chkbxCacheJacksonObjects = (CheckBoxPreference) findPreference(KEY_CACHE_JACKSON_OBJECTS);
 		listHttpConnectionType = (ListPreference) findPreference(KEY_HTTP_CONNECTION_TYPE);
 		txtNumRequests = (EditTextPreference) findPreference(KEY_NUM_REQUESTS);
 		txtTimeBetweenRequests = (EditTextPreference) findPreference(KEY_TIME_BETWEEN_REQUESTS);
@@ -162,6 +167,7 @@ public class Preferences extends SherlockPreferenceActivity implements
 		// Change the descriptions of the preferences based on user's selections
 		changePreferenceDescription(KEY_RESPONSE_TYPE);
 		changePreferenceDescription(KEY_JACKSON_OBJECT_TYPE);
+		changePreferenceDescription(KEY_CACHE_JACKSON_OBJECTS);
 		changePreferenceDescription(KEY_HTTP_CONNECTION_TYPE);
 		changePreferenceDescription(KEY_NUM_REQUESTS);
 		changePreferenceDescription(KEY_TIME_BETWEEN_REQUESTS);
@@ -215,6 +221,32 @@ public class Preferences extends SherlockPreferenceActivity implements
 			}
 		}
 
+		if (key.equalsIgnoreCase(KEY_CACHE_JACKSON_OBJECTS)) {
+			if (sharedPreferences.getBoolean(key, true)) {
+				chkbxCacheJacksonObjects
+						.setSummary("Will cache Jackson objects to speed up cold-starts.");
+				/**
+				 * Tell Jackson to retrieve any cached objects now, in an
+				 * attempt to hide the initialization latency from the user.
+				 * Caching allows the re-use of Jackson ObjectMapper,
+				 * ObjectReader, and XmlReader objects from previous VM
+				 * executions to reduce cold-start times.
+				 */
+				Log.d(MainActivity.TAG,
+						"User changed caching preference (or PreferenceActivity was launched). " +
+						"Forcing a cache read in case we don't yet have the cached objects.");
+				SiriJacksonConfig.setUsingCache(true, getApplicationContext());
+				SiriJacksonConfig.forceCacheRead();
+			} else {
+				chkbxCacheJacksonObjects
+						.setSummary("Not caching Jackson objects. Cold-starts may be slow.");
+				/**
+				 * Turn caching off
+				 */
+				SiriJacksonConfig.setUsingCache(false, getApplicationContext());
+			}
+		}
+
 		if (key.equalsIgnoreCase(KEY_HTTP_CONNECTION_TYPE)) {
 			if (Integer.valueOf(sharedPreferences.getString(key, "0")) == SiriRestClientConfig.HTTP_CONNECTION_TYPE_ANDROID) {
 				listHttpConnectionType
@@ -238,12 +270,14 @@ public class Preferences extends SherlockPreferenceActivity implements
 					.getString(key, "0"))
 					+ " seconds will elapse between requests");
 		}
-		
+
 		if (key.equalsIgnoreCase(KEY_BEEP_ON_TEST_COMPLETE)) {
-			if(sharedPreferences.getBoolean(key, false)){					
-				chkbxBeepOnTestComplete.setSummary("Will beep when tests are complete");
-			}else{
-				chkbxBeepOnTestComplete.setSummary("No beep when tests are complete");
+			if (sharedPreferences.getBoolean(key, false)) {
+				chkbxBeepOnTestComplete
+						.setSummary("Will beep when tests are complete");
+			} else {
+				chkbxBeepOnTestComplete
+						.setSummary("No beep when tests are complete");
 			}
 		}
 	}

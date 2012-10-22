@@ -65,7 +65,11 @@
     <string name="pref_jackson_object_title">JSON Parser Type</string>
     <string name="pref_jackson_object_summary">Select the ObjectMapper or ObjectReader to perform JSON parsing</string>
     <string name="pref_jackson_object_dialog_title">Jackson JSON Parser Type</string>
-    <string name="pref_jackson_object_default_value">0</string>
+    <string name="pref_jackson_object_default_value">0</string>    
+    <!-- Caching Jackson objects -->    
+    <string name="pref_cache_jackson_objects_title">Cache Jackson Objects</string>
+    <string name="pref_cache_jackson_objects_summary">If set to true, the app will cache Jackson objects after parsing a response.</string>    
+    <string name="pref_cache_jackson_objects_default_value">1</string>
     
     <!-- Number of test requests to run consecutively -->
     <string name="pref_category_tests_title">Test Parameters</string>

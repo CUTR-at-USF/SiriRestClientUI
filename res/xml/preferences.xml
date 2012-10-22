@@ -31,6 +31,12 @@
             android:entries="@array/pref_jackson_object_entries"
             android:entryValues="@array/pref_jackson_object_values"
             android:defaultValue="0" />
+         <CheckBoxPreference
+            android:key="pref_key_cache_jackson_objects"
+            android:title="@string/pref_cache_jackson_objects_title"
+            android:summary="@string/pref_cache_jackson_objects_summary"
+            android:defaultValue="true"                                  
+            />
     </PreferenceCategory>
 
     <PreferenceCategory
