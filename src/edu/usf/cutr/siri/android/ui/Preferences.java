@@ -230,7 +230,7 @@ public class Preferences extends SherlockPreferenceActivity implements
 				 * attempt to hide the initialization latency from the user.
 				 * Caching allows the re-use of Jackson ObjectMapper,
 				 * ObjectReader, and XmlReader objects from previous VM
-				 * executions to reduce cold-start times.
+				 * executions to reduce cold-start times. _getTracker
 				 */
 				Log.d(MainActivity.TAG,
 						"User changed caching preference (or PreferenceActivity was launched). " +
