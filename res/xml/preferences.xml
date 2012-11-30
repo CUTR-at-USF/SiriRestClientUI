@@ -35,7 +35,7 @@
             android:key="pref_key_cache_jackson_objects"
             android:title="@string/pref_cache_jackson_objects_title"
             android:summary="@string/pref_cache_jackson_objects_summary"
-            android:defaultValue="true"                                  
+            android:defaultValue="false"                                  
             />
     </PreferenceCategory>
 

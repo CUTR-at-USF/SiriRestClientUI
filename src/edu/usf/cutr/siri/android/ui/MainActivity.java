@@ -85,7 +85,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		SharedPreferences sharedPref = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		boolean cacheJacksonObjects = sharedPref.getBoolean(
-				Preferences.KEY_CACHE_JACKSON_OBJECTS, true);
+				Preferences.KEY_CACHE_JACKSON_OBJECTS, false);
 
 		if (cacheJacksonObjects) {
 			Log.d(TAG,

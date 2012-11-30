@@ -222,7 +222,7 @@ public class Preferences extends SherlockPreferenceActivity implements
 		}
 
 		if (key.equalsIgnoreCase(KEY_CACHE_JACKSON_OBJECTS)) {
-			if (sharedPreferences.getBoolean(key, true)) {
+			if (sharedPreferences.getBoolean(key, false)) {
 				chkbxCacheJacksonObjects
 						.setSummary("Will cache Jackson objects to speed up cold-starts.");
 				/**
