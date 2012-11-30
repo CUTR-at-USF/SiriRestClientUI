@@ -38,7 +38,7 @@
     <string name="stop_res_tab_title">Stop_Response</string>
 
     <!-- MTA-specific input -->
-    <string name="mta_operator_ref_value">MTA NYCT</string>
+    <string name="mta_operator_ref_value">MTA</string>
     <string name="mta_vehicle_ref_value">7560</string>
     <string name="mta_monitoring_ref_value">308214</string>
     
