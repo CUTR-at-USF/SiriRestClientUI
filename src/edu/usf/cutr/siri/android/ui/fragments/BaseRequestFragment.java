@@ -203,9 +203,6 @@ public abstract class BaseRequestFragment extends SherlockFragment {
 					
 				}
 			}
-
-			// Print out and display the results
-			showResults();
 			
 			//Beep on test completion, if the preference is set
 			if(beepOnTestComplete){
@@ -235,6 +232,9 @@ public abstract class BaseRequestFragment extends SherlockFragment {
 		protected void onPostExecute(Siri result) {
 			// hide the progress indicator when the network request is complete
 			dismissProgressDialog();
+			
+			// Print out and display the results
+			showResults();
 
 			// return the list of vehicle info
 			refreshStates(result);
@@ -304,47 +304,36 @@ public abstract class BaseRequestFragment extends SherlockFragment {
 		public void showResults() {
 			if (numRequests == 1) {
 				// If there was only one test, then show a Toast of the single
-				// result
-				getActivity().runOnUiThread(new Runnable() {
-					public void run() {
-						if (elapsedTimes.get(0) != 0) {
-							// Request was successful. Show the amount of time
-							// it
-							// took
-							Toast.makeText(
-									getActivity(),
-									"Elapsed Time = "
-											+ df.format(elapsedTimes.get(0))
-											+ "ms", Toast.LENGTH_SHORT).show();
-							Log.d(MainActivity.TAG,
-									"Elapsed Time = "
-											+ df.format(elapsedTimes.get(0))
-											+ "ms");
-						} else {
-							// Request was NOT successful. Show error message.
-							Toast.makeText(
-									getActivity(),
-									"An error occured during the last request.",
-									Toast.LENGTH_SHORT).show();
-							Log.d(MainActivity.TAG,
-									"An error occured during the last request.");
-						}
-					}
-				});
+				// result				
+				if (elapsedTimes.get(0) != 0) {
+					// Request was successful. Show the amount of time
+					// it took
+					Toast.makeText(
+							getActivity(),
+							"Elapsed Time = "
+									+ df.format(elapsedTimes.get(0))
+									+ "ms", Toast.LENGTH_SHORT).show();
+					Log.d(MainActivity.TAG,
+							"Elapsed Time = "
+									+ df.format(elapsedTimes.get(0))
+									+ "ms");
+				} else {
+					// Request was NOT successful. Show error message.
+					Toast.makeText(
+							getActivity(),
+							"An error occured during the last request.",
+							Toast.LENGTH_SHORT).show();
+					Log.d(MainActivity.TAG,
+							"An error occured during the last request.");
+				}									
 			} else {
-				// Show multiple results in longer toast
-				getActivity().runOnUiThread(new Runnable() {
-					public void run() {
-						// Request was successful. Show the amount of time it
-						// took
-						Toast.makeText(
-								getActivity(),
-								"Elapsed Times (ms) = "
-										+ elapsedTimes.toString(),
-								Toast.LENGTH_SHORT).show();
-
-					}
-				});
+				// Request was successful. Show the amount of time it
+				// took
+				Toast.makeText(
+						getActivity(),
+						"Elapsed Times (ms) = "
+								+ elapsedTimes.toString(),
+						Toast.LENGTH_SHORT).show();				
 			}
 
 			Log.d(MainActivity.TAG,
