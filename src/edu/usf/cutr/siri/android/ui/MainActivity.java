@@ -205,11 +205,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		public static final int NUMBER_OF_TABS = 4; // Used to set up
 													// TabListener
 
-		// Constants for the different fragments that will be displayed in tabs
-		public static final int VEH_REQUEST_FRAGMENT = 0;
-		public static final int VEH_RESPONSE_FRAGMENT = 1;
-		public static final int STOP_REQUEST_FRAGMENT = 2;
-		public static final int STOP_RESPONSE_FRAGMENT = 3;
+		// Constants for the different fragments that will be displayed in tabs, in numeric order
+		public static final int STOP_REQUEST_FRAGMENT = 0;
+		public static final int STOP_RESPONSE_FRAGMENT = 1;
+		public static final int VEH_REQUEST_FRAGMENT = 2;
+		public static final int VEH_RESPONSE_FRAGMENT = 3;		
 
 		// Maintain handle to Fragments to avoid recreating them if one already
 		// exists
