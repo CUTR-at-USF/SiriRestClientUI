@@ -262,16 +262,16 @@ public class MainActivity extends SherlockFragmentActivity implements
 		@Override
 		public CharSequence getPageTitle(int position) {
 			switch (position) {
-			case 0:
+			case VEH_REQUEST_FRAGMENT:
 				// Vehicle Monitoring Request
 				return getString(R.string.vehicle_req_tab_title).toUpperCase();
-			case 1:
+			case VEH_RESPONSE_FRAGMENT:
 				// Vehicle Monitoring Response
 				return getString(R.string.vehicle_res_tab_title).toUpperCase();
-			case 2:
+			case STOP_REQUEST_FRAGMENT:
 				// Stop Monitoring Request
 				return getString(R.string.stop_req_tab_title).toUpperCase();
-			case 3:
+			case STOP_RESPONSE_FRAGMENT:
 				// Stop Monitoring Response
 				return getString(R.string.stop_res_tab_title).toUpperCase();
 			}
