@@ -40,6 +40,7 @@ import edu.usf.cutr.siri.android.client.SiriRestClient;
 import edu.usf.cutr.siri.android.client.config.SiriRestClientConfig;
 import edu.usf.cutr.siri.android.ui.MainActivity;
 import edu.usf.cutr.siri.android.ui.Preferences;
+import edu.usf.cutr.siri.android.ui.R;
 import edu.usf.cutr.siri.android.util.SiriUtilsUI;
 
 /**
@@ -154,8 +155,8 @@ public abstract class BaseRequestFragment extends SherlockFragment {
 
 			// Instantiate client with URLs for server and config
 			client = new SiriRestClient(
-					"http://bustime.mta.info/api/siri/vehicle-monitoring",
-					"http://bustime.mta.info/api/siri/stop-monitoring", config);
+					getActivity().getString(R.string.veh_mon_base_url),
+					getActivity().getString(R.string.stop_mon_base_url), config);
 
 			// Clear current benchmarking test results
 			elapsedTimes.clear();
