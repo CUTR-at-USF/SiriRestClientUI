@@ -18,6 +18,7 @@ package edu.usf.cutr.siri.android.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 /**
@@ -89,8 +90,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		if (cacheJacksonObjects) {
 			Log.d(TAG,
-					"Preference is set to cache Jackson objects, forcing a cache read now in " +
-					"MainActivity.onCreate() to hide latency from user...");
+					"Preference is set to cache Jackson objects, forcing a cache read now in "
+							+ "MainActivity.onCreate() to hide latency from user...");
 			/**
 			 * Tell Jackson to retrieve any cached objects now, in an attempt to
 			 * hide the initialization latency from the user. Caching allows the
@@ -142,6 +143,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+		
+		//Fix bug in HTTP connection pool for Android 2.1 and lower
+		disableConnectionReuseIfNecessary();
 
 		// Hide the indeterminate progress bar on the activity until we need it
 		setProgressBarIndeterminateVisibility(Boolean.FALSE);
@@ -205,11 +209,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 		public static final int NUMBER_OF_TABS = 4; // Used to set up
 													// TabListener
 
-		// Constants for the different fragments that will be displayed in tabs, in numeric order
+		// Constants for the different fragments that will be displayed in tabs,
+		// in numeric order
 		public static final int STOP_REQUEST_FRAGMENT = 0;
 		public static final int STOP_RESPONSE_FRAGMENT = 1;
 		public static final int VEH_REQUEST_FRAGMENT = 2;
-		public static final int VEH_RESPONSE_FRAGMENT = 3;		
+		public static final int VEH_RESPONSE_FRAGMENT = 3;
 
 		// Maintain handle to Fragments to avoid recreating them if one already
 		// exists
@@ -276,6 +281,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 				return getString(R.string.stop_res_tab_title).toUpperCase();
 			}
 			return null; // This should never happen
+		}
+	}
+
+	private void disableConnectionReuseIfNecessary() {
+		// Work around pre-Froyo bugs in HTTP connection reuse.
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.FROYO) {
+			System.setProperty("http.keepAlive", "false");
 		}
 	}
 }
