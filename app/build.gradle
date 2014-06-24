@@ -25,6 +25,7 @@ buildscript {
 apply plugin: 'android'
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven {
         // CUTR SNAPSHOTs
