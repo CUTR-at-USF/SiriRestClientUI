@@ -1,3 +1,6 @@
-/bin
-/target
-/gen
+.gradle
+/local.properties
+/.idea/
+*.iml
+.DS_Store
+/build
